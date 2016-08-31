@@ -210,6 +210,9 @@ export default class EditorToolbar extends Component {
 
   _setLink(url: string) {
     let {editorState} = this.props;
+    if (url.slice(0, 4) !== 'http') {
+      url = 'http://' + url
+    }
     let selection = editorState.getSelection();
     let entityKey = Entity.create(ENTITY_TYPE.LINK, 'MUTABLE', {url});
     this.setState({showLinkInput: false});
